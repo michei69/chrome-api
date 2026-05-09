@@ -9,13 +9,15 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY requirements.txt main.py ./
+COPY requirements.txt main.py start.sh ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN patchright install chrome
 RUN patchright install-deps
 
+RUN chmod +x ./start.sh
+
 EXPOSE 8193
 
-ENTRYPOINT ["xvfb-run", "-a", "python3", "./main.py"]
+ENTRYPOINT ["./start.sh"]

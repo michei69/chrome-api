@@ -1,0 +1,6 @@
+services:
+  chrome:
+    image: chrome-webapi
+    ports:
+      - "8193:8193"
+    restart: unless-stopped
